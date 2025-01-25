@@ -25369,13 +25369,13 @@ var args = Args.create("queso", "A script for running various quests", {
   })
 });
 function checkGithubVersion() {
-  var localSHA = (0, import_kolmafia89.gitInfo)("loathers-quest-compedium-release").commit, gitData = (0, import_kolmafia89.visitUrl)("https://api.github.com/repos/".concat("loathers/quest-compendium", "/branches"));
+  var localSHA = (0, import_kolmafia89.gitInfo)("loathers-quest-compendium-release").commit, gitData = (0, import_kolmafia89.visitUrl)("https://api.github.com/repos/".concat("loathers/quest-compendium", "/branches"));
   if (!gitData) (0, import_kolmafia89.print)("Failed to reach github!");
   else {
     var _gitBranches$find, gitBranches = JSON.parse(gitData), releaseSHA = (_gitBranches$find = gitBranches.find(function(branchInfo) {
       return branchInfo.name === "release";
     })) === null || _gitBranches$find === void 0 || (_gitBranches$find = _gitBranches$find.commit) === null || _gitBranches$find === void 0 ? void 0 : _gitBranches$find.sha;
-    (0, import_kolmafia89.print)("Local Version: ".concat(localSHA, " (built from ").concat("main", "@").concat("2d47c1527e2bd026e410a12d54c80617c08d4196", ")")), releaseSHA === localSHA ? (0, import_kolmafia89.print)("Queso is up to date!", HIGHLIGHT) : releaseSHA === void 0 ? (0, import_kolmafia89.print)("Queso may be out of date, unable to query GitHub for latest version. Maybe run 'git update'?", HIGHLIGHT) : ((0, import_kolmafia89.print)("Release Version: ".concat(releaseSHA)), (0, import_kolmafia89.print)("Queso is out of date. Please run 'git update'!", "red"));
+    (0, import_kolmafia89.print)("Local Version: ".concat(localSHA, " (built from ").concat("main", "@").concat("71a4f14b3a8695a97870e69ca2f8397b50c89956", ")")), releaseSHA === localSHA ? (0, import_kolmafia89.print)("Queso is up to date!", HIGHLIGHT) : releaseSHA === void 0 ? (0, import_kolmafia89.print)("Queso may be out of date, unable to query GitHub for latest version. Maybe run 'git update'?", HIGHLIGHT) : ((0, import_kolmafia89.print)("Release Version: ".concat(releaseSHA)), (0, import_kolmafia89.print)("Queso is out of date. Please run 'git update'!", "red"));
   }
 }
 
