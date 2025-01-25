@@ -24,7 +24,7 @@ jobs:
           cache: yarn
 
       - name: Install Dependencies
-        run: yarn install --immutable --immutable-cache
+        run: yarn install --immutable
 
       - name: Build
         run: yarn run build
@@ -41,7 +41,7 @@ jobs:
           cache: yarn
 
       - name: Install Dependencies
-        run: yarn install --immutable --immutable-cache
+        run: yarn install --immutable
 
       - name: Lint
         run: yarn run lint
@@ -60,7 +60,7 @@ jobs:
           cache: yarn
 
       - name: Install Dependencies
-        run: yarn install --immutable --immutable-cache
+        run: yarn install --immutable
 
       - name: Build
         run: yarn run build
