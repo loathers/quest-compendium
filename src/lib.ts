@@ -51,7 +51,7 @@ export function checkGithubVersion(): void {
   if (process.env.GITHUB_REPOSITORY === "CustomBuild") {
     print("Skipping version check for custom build");
   } else if (process.env.GITHUB_REPOSITORY !== undefined) {
-    const localSHA = gitInfo("loathers-quest-compedium-release").commit;
+    const localSHA = gitInfo("loathers-quest-compendium-release").commit;
 
     const gitData = visitUrl(
       `https://api.github.com/repos/${process.env.GITHUB_REPOSITORY}/branches`,
