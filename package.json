@@ -9,8 +9,8 @@
   "license": "MIT",
   "scripts": {
     "build": "eslint src && node build.mjs",
-    "lint": "eslint src && prettier --check .github/**/*.yml src/**/*.ts *.{cjs,mjs,js,json}",
-    "format": "prettier --write .github/**/*.yml src/**/*.ts *.{cjs,mjs,js,json}",
+    "lint": "eslint src && prettier --check .github src *.{cjs,mjs,js,json}",
+    "format": "prettier --write .github src *.{cjs,mjs,js,json}",
     "watch": "node build.mjs --watch",
     "install-mafia": "create-kolmafia-script --install"
   },

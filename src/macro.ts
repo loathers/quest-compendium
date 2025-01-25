@@ -1,6 +1,16 @@
-import { haveEquipped, haveSkill, Item, myBuffedstat, myClass, Skill, visitUrl } from "kolmafia";
+import {
+  Element,
+  haveEquipped,
+  haveSkill,
+  Item,
+  myBuffedstat,
+  myClass,
+  Skill,
+  visitUrl,
+} from "kolmafia";
 import {
   $class,
+  $element,
   $item,
   $items,
   $monster,
@@ -108,6 +118,24 @@ export default class Macro extends StrictMacro {
     return new Macro().familiarActions();
   }
 
+  elementalKill(targetElement: Element): this {
+    if (myClass() === $class`Grey Goo`) return this;
+
+    return this.externalIf(
+      myBuffedstat($stat`Muscle`) > myBuffedstat($stat`Mysticality`) &&
+        have($skill`Northern Explosion`) &&
+        targetElement !== $element`Cold`,
+      Macro.trySkillRepeat($skill`Northern Explosion`),
+    )
+      .trySkillRepeat($skill`Saucegeyser`, $skill`Wave of Sauce`, $skill`Saucestorm`)
+      .attack()
+      .repeat();
+  }
+
+  static elementalKill(targetElement: Element): Macro {
+    return new Macro().elementalKill(targetElement);
+  }
+
   hardKill(): this {
     if (myClass() === $class`Grey Goo`) return this;
 
@@ -174,6 +202,22 @@ export default class Macro extends StrictMacro {
 
   static hardCombat(): Macro {
     return new Macro().hardCombat();
+  }
+
+  elementalCombat(targetElement: Element): this {
+    return this.tryHaveSkill($skill`Curse of Weaksauce`)
+      .familiarActions()
+      .externalIf(have($skill`Meteor Lore`), Macro.skill($skill`Micrometeorite`))
+      .tryHaveSkill($skill`Pocket Crumbs`)
+      .doHardItems()
+      .gooKill()
+      .elementalKill(targetElement)
+      .attack()
+      .repeat();
+  }
+
+  static elementalCombat(targetElement: Element): Macro {
+    return new Macro().elementalCombat(targetElement);
   }
 
   pickpocket(): this {

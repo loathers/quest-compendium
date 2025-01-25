@@ -18,7 +18,9 @@ export type QuesoTask = Task & {
   sobriety: "sober" | "drunk" | "either";
 };
 
-export type QuesoQuest = Quest<QuesoTask>;
+export interface QuesoQuest extends Quest<QuesoTask> {
+  description: string;
+}
 
 const introAdventures: string[] = [];
 export class QuesoStrategy extends CombatStrategy {

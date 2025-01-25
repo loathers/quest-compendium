@@ -1,5 +1,4 @@
 import { makeValue, ValueFunctions } from "garbo-lib";
-import { Args } from "grimoire-kolmafia";
 import {
   gitInfo,
   inebrietyLimit,
@@ -11,7 +10,11 @@ import {
   print,
   visitUrl,
 } from "kolmafia";
-import { $familiar, $item, SourceTerminal } from "libram";
+import { $familiar, $item, PropertiesManager, SourceTerminal } from "libram";
+
+import { args } from "./args";
+
+export const propertyManager = new PropertiesManager();
 
 export function shouldRedigitize(): boolean {
   const digitizesLeft = SourceTerminal.getDigitizeUsesRemaining();
@@ -36,13 +39,6 @@ export function printd(message: string) {
     print(message, HIGHLIGHT);
   }
 }
-
-export const args = Args.create("queso", "A script for running various quests", {
-  debug: Args.flag({
-    help: "Turn on debug printing",
-    default: false,
-  }),
-});
 
 /**
  * Compares the local version of this script against the most recent release branch, printing results to the CLI
