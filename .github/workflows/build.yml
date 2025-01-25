@@ -20,9 +20,8 @@ jobs:
       - name: Use Node.js ${{ env.node-version }}
         uses: actions/setup-node@v3
         with:
-          with:
-            node-version: ${{ env.node-version }}
-            cache: yarn
+          node-version: ${{ env.node-version }}
+          cache: yarn
 
       - name: Install Dependencies
         run: yarn install --immutable --immutable-cache
@@ -38,9 +37,8 @@ jobs:
       - name: Use Node.js ${{ env.node-version }}
         uses: actions/setup-node@v3
         with:
-          with:
-            node-version: ${{ env.node-version }}
-            cache: yarn
+          node-version: ${{ env.node-version }}
+          cache: yarn
 
       - name: Install Dependencies
         run: yarn install --immutable --immutable-cache
@@ -58,9 +56,8 @@ jobs:
       - name: Use Node.js ${{ env.node-version }}
         uses: actions/setup-node@v3
         with:
-          with:
-            node-version: ${{ env.node-version }}
-            cache: yarn
+          node-version: ${{ env.node-version }}
+          cache: yarn
 
       - name: Install Dependencies
         run: yarn install --immutable --immutable-cache

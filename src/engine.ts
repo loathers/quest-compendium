@@ -8,14 +8,7 @@ import {
   itemAmount,
   setAutoAttack,
 } from "kolmafia";
-import {
-  $familiar,
-  $item,
-  CrownOfThrones,
-  get,
-  JuneCleaver,
-  PropertiesManager,
-} from "libram";
+import { $familiar, $item, CrownOfThrones, get, JuneCleaver, PropertiesManager } from "libram";
 
 import { bestJuneCleaverOption, shouldSkip } from "./juneCleaver";
 import { printd, sober } from "./lib";
