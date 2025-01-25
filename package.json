@@ -8,13 +8,14 @@
   "homepage": "",
   "license": "MIT",
   "scripts": {
-    "build": "node build.mjs",
+    "build": "eslint src && node build.mjs",
     "lint": "eslint src && prettier --check .github/**/*.yml src/**/*.ts *.{cjs,mjs,js,json}",
     "format": "prettier --write .github/**/*.yml src/**/*.ts *.{cjs,mjs,js,json}",
     "watch": "node build.mjs --watch",
     "install-mafia": "create-kolmafia-script --install"
   },
   "dependencies": {
+    "garbo-lib": "^1.0.1",
     "grimoire-kolmafia": "^0.3.26",
     "kolmafia": "^5.28307.0",
     "libram": "^0.9.31"

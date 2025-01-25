@@ -1,6 +1,48 @@
-import { gitInfo, isDarkMode, print, visitUrl } from "kolmafia";
+import { makeValue, ValueFunctions } from "garbo-lib";
+import { Args } from "grimoire-kolmafia";
+import {
+  gitInfo,
+  inebrietyLimit,
+  isDarkMode,
+  Item,
+  myAdventures,
+  myFamiliar,
+  myInebriety,
+  print,
+  visitUrl,
+} from "kolmafia";
+import { $familiar, $item, SourceTerminal } from "libram";
+
+export function shouldRedigitize(): boolean {
+  const digitizesLeft = SourceTerminal.getDigitizeUsesRemaining();
+  const monsterCount = SourceTerminal.getDigitizeMonsterCount() + 1;
+  // triangular number * 10 - 3
+  const digitizeAdventuresUsed = monsterCount * (monsterCount + 1) * 5 - 3;
+  // Redigitize if fewer adventures than this digitize usage.
+  return (
+    SourceTerminal.have() &&
+    SourceTerminal.canDigitize() &&
+    myAdventures() / 0.96 < digitizesLeft * digitizeAdventuresUsed
+  );
+}
 
 export const HIGHLIGHT = isDarkMode() ? "yellow" : "blue";
+export function printh(message: string) {
+  print(message, HIGHLIGHT);
+}
+
+export function printd(message: string) {
+  if (args.debug) {
+    print(message, HIGHLIGHT);
+  }
+}
+
+export const args = Args.create("queso", "A script for running various quests", {
+  debug: Args.flag({
+    help: "Turn on debug printing",
+    default: false,
+  }),
+});
 
 /**
  * Compares the local version of this script against the most recent release branch, printing results to the CLI
@@ -39,4 +81,16 @@ export function checkGithubVersion(): void {
   } else {
     print("Queso was built from an unknown repository, unable to check for update.", HIGHLIGHT);
   }
+}
+
+export function sober() {
+  return myInebriety() <= inebrietyLimit() + (myFamiliar() === $familiar`Stooper` ? -1 : 0);
+}
+
+let _valueFunctions: ValueFunctions;
+// note: add spirits
+const valueFunctions = () =>
+  (_valueFunctions ??= makeValue({ itemValues: new Map([[$item`fake hand`, 50000]]) }));
+export function garboValue(...items: Item[]): number {
+  return valueFunctions().averageValue(...items);
 }

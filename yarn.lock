@@ -2522,6 +2522,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"garbo-lib@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "garbo-lib@npm:1.0.1"
+  peerDependencies:
+    kolmafia: ^5.28067.0
+    libram: ^0.9.10
+  checksum: 10c0/0994eeaf6ce7ae210809d5168c191fcf19cdd958452717ce245ce10f6d2e22d74ef94eeac141086fcb33b1b3b1b8e202d46cf4b95f1ca3e2426aef536fbce167
+  languageName: node
+  linkType: hard
+
 "gensync@npm:^1.0.0-beta.2":
   version: 1.0.0-beta.2
   resolution: "gensync@npm:1.0.0-beta.2"
@@ -3213,6 +3223,7 @@ __metadata:
     esbuild-plugin-babel: "npm:^0.2.3"
     eslint: "npm:^9.19.0"
     eslint-plugin-libram: "npm:^0.4.21"
+    garbo-lib: "npm:^1.0.1"
     grimoire-kolmafia: "npm:^0.3.26"
     kolmafia: "npm:^5.28307.0"
     libram: "npm:^0.9.31"
