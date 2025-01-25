@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  node-version: "18"
+  node-version: "20"
   path: "dist" # The directory where your assets are generated, should match build.mjs
 
 jobs:
@@ -20,10 +20,12 @@ jobs:
       - name: Use Node.js ${{ env.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ env.node-version }}
+          with:
+            node-version: ${{ env.node-version }}
+            cache: yarn
 
       - name: Install Dependencies
-        run: yarn install --immutable
+        run: yarn install --immutable --immutable-cache
 
       - name: Build
         run: yarn run build
@@ -36,10 +38,12 @@ jobs:
       - name: Use Node.js ${{ env.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ env.node-version }}
+          with:
+            node-version: ${{ env.node-version }}
+            cache: yarn
 
       - name: Install Dependencies
-        run: yarn install --immutable
+        run: yarn install --immutable --immutable-cache
 
       - name: Lint
         run: yarn run lint
@@ -54,10 +58,12 @@ jobs:
       - name: Use Node.js ${{ env.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ env.node-version }}
+          with:
+            node-version: ${{ env.node-version }}
+            cache: yarn
 
       - name: Install Dependencies
-        run: yarn install --immutable
+        run: yarn install --immutable --immutable-cache
 
       - name: Build
         run: yarn run build
