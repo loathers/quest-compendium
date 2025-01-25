@@ -1,16 +1,14 @@
-import { makeValue, ValueFunctions } from "garbo-lib";
 import {
   gitInfo,
   inebrietyLimit,
   isDarkMode,
-  Item,
   myAdventures,
   myFamiliar,
   myInebriety,
   print,
   visitUrl,
 } from "kolmafia";
-import { $familiar, $item, PropertiesManager, SourceTerminal } from "libram";
+import { $familiar, PropertiesManager, SourceTerminal } from "libram";
 
 import { args } from "./args";
 
@@ -81,12 +79,4 @@ export function checkGithubVersion(): void {
 
 export function sober() {
   return myInebriety() <= inebrietyLimit() + (myFamiliar() === $familiar`Stooper` ? -1 : 0);
-}
-
-let _valueFunctions: ValueFunctions;
-// note: add spirits
-const valueFunctions = () =>
-  (_valueFunctions ??= makeValue({ itemValues: new Map([[$item`fake hand`, 50000]]) }));
-export function garboValue(...items: Item[]): number {
-  return valueFunctions().averageValue(...items);
 }

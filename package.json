@@ -15,7 +15,6 @@
     "install-mafia": "create-kolmafia-script --install"
   },
   "dependencies": {
-    "garbo-lib": "^1.0.1",
     "grimoire-kolmafia": "^0.3.26",
     "kolmafia": "^5.28307.0",
     "libram": "^0.9.31"

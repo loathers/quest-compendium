@@ -1,7 +1,5 @@
-import { Item } from "kolmafia";
+import { Item, mallPrice } from "kolmafia";
 import { $item, get, JuneCleaver, maxBy } from "libram";
-
-import { garboValue } from "./lib";
 
 export const juneCleaverChoiceValues = {
   1467: {
@@ -24,7 +22,7 @@ export const juneCleaverChoiceValues = {
 } as const;
 
 function valueJuneCleaverOption(result: Item | number): number {
-  return result instanceof Item ? garboValue(result) : result;
+  return result instanceof Item ? mallPrice(result) : result;
 }
 
 export function bestJuneCleaverOption(id: (typeof JuneCleaver.choices)[number]): 1 | 2 | 3 {

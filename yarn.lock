@@ -1796,11 +1796,6 @@ function-bind@^1.1.2:
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.2.tgz#2c02d864d97f3ea6c8830c464cbd11ab6eab7a1c"
   integrity sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==
 
-garbo-lib@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/garbo-lib/-/garbo-lib-1.0.1.tgz#ab3afdea234849c6ea6ea3fdeb832371f0b705d1"
-  integrity sha512-tFQFs732jvH+lx/YulYaP0jn3sluEEkrD/zmxtHy9REjh1HxruGmXm9uyIpMi0b9hTPkAL2LIvrEiNjci3w2Ng==
-
 gensync@^1.0.0-beta.2:
   version "1.0.0-beta.2"
   resolved "https://registry.yarnpkg.com/gensync/-/gensync-1.0.0-beta.2.tgz#32a6ee76c3d7f52d46b2b1ae5d93fea8580a25e0"
