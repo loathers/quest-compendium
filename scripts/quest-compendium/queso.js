@@ -7111,7 +7111,7 @@ function checkGithubVersion() {
     var _gitBranches$find, gitBranches = JSON.parse(gitData), releaseSHA = (_gitBranches$find = gitBranches.find(function(branchInfo) {
       return branchInfo.name === "release";
     })) === null || _gitBranches$find === void 0 || (_gitBranches$find = _gitBranches$find.commit) === null || _gitBranches$find === void 0 ? void 0 : _gitBranches$find.sha;
-    (0, import_kolmafia21.print)("Local Version: ".concat(localSHA, " (built from ").concat("main", "@").concat("8692a1862cd015a2053841e8160c7ff721e6a7f6", ")")), releaseSHA === localSHA ? (0, import_kolmafia21.print)("Queso is up to date!", HIGHLIGHT) : releaseSHA === void 0 ? (0, import_kolmafia21.print)("Queso may be out of date, unable to query GitHub for latest version. Maybe run 'git update'?", HIGHLIGHT) : ((0, import_kolmafia21.print)("Release Version: ".concat(releaseSHA)), (0, import_kolmafia21.print)("Queso is out of date. Please run 'git update'!", "red"));
+    (0, import_kolmafia21.print)("Local Version: ".concat(localSHA, " (built from ").concat("main", "@").concat("e6637b909fb3937a4eadf444deb7211dc8206e55", ")")), releaseSHA === localSHA ? (0, import_kolmafia21.print)("Queso is up to date!", HIGHLIGHT) : releaseSHA === void 0 ? (0, import_kolmafia21.print)("Queso may be out of date, unable to query GitHub for latest version. Maybe run 'git update'?", HIGHLIGHT) : ((0, import_kolmafia21.print)("Release Version: ".concat(releaseSHA)), (0, import_kolmafia21.print)("Queso is out of date. Please run 'git update'!", "red"));
   }
 }
 function sober() {
@@ -8025,5 +8025,4 @@ function main() {
   } finally {
     engine.destruct(), propertyManager.resetAll();
   }
-  (0, import_kolmafia26.print)("You have successfully run queso!");
 }
