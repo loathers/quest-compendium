@@ -1,9 +1,11 @@
 import {
+  availableAmount,
   creatableAmount,
   create,
   myAdventures,
   myMaxhp,
   myMaxmp,
+  print,
   restoreHp,
   restoreMp,
   use,
@@ -11,6 +13,7 @@ import {
 import { $element, $familiar, $item, $skill, get, have, tryFindFreeKill } from "libram";
 
 import { QuesoQuest, QuesoStrategy } from "../../engine";
+import { HIGHLIGHT } from "../../lib";
 import Macro from "../../macro";
 
 tryFindFreeKill({});
@@ -52,6 +55,17 @@ export const EMBERIZA_AUREOLA_QUEST: QuesoQuest = {
       ready: () => have($item`ember egg`),
       completed: () => have($familiar`Emberiza Aureola`),
       do: () => use($item`ember egg`),
+      sobriety: "either",
+    },
+    {
+      name: "Unfinished",
+      completed: () => have($familiar`Emberiza Aureola`),
+      do: () =>
+        print(
+          `Unable to acquire Emberiza Aureola, have ${availableAmount($item`embering hunk`)}/21 ${$item`embering hunk`.plural}`,
+          HIGHLIGHT,
+        ),
+      limit: { skip: 1 },
       sobriety: "either",
     },
   ],
