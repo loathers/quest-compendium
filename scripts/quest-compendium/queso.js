@@ -7111,7 +7111,7 @@ function checkGithubVersion() {
     var _gitBranches$find, gitBranches = JSON.parse(gitData), releaseSHA = (_gitBranches$find = gitBranches.find(function(branchInfo) {
       return branchInfo.name === "release";
     })) === null || _gitBranches$find === void 0 || (_gitBranches$find = _gitBranches$find.commit) === null || _gitBranches$find === void 0 ? void 0 : _gitBranches$find.sha;
-    (0, import_kolmafia21.print)("Local Version: ".concat(localSHA, " (built from ").concat("main", "@").concat("d37d2b1e87d9d02842646d980c991d56f36fd22f", ")")), releaseSHA === localSHA ? (0, import_kolmafia21.print)("Queso is up to date!", HIGHLIGHT) : releaseSHA === void 0 ? (0, import_kolmafia21.print)("Queso may be out of date, unable to query GitHub for latest version. Maybe run 'git update'?", HIGHLIGHT) : ((0, import_kolmafia21.print)("Release Version: ".concat(releaseSHA)), (0, import_kolmafia21.print)("Queso is out of date. Please run 'git update'!", "red"));
+    (0, import_kolmafia21.print)("Local Version: ".concat(localSHA, " (built from ").concat("main", "@").concat("8692a1862cd015a2053841e8160c7ff721e6a7f6", ")")), releaseSHA === localSHA ? (0, import_kolmafia21.print)("Queso is up to date!", HIGHLIGHT) : releaseSHA === void 0 ? (0, import_kolmafia21.print)("Queso may be out of date, unable to query GitHub for latest version. Maybe run 'git update'?", HIGHLIGHT) : ((0, import_kolmafia21.print)("Release Version: ".concat(releaseSHA)), (0, import_kolmafia21.print)("Queso is out of date. Please run 'git update'!", "red"));
   }
 }
 function sober() {
@@ -7694,7 +7694,7 @@ var Macro2 = /* @__PURE__ */ function(_StrictMacro) {
 }(StrictMacro);
 
 // src/quests/2024/EmberCenser.ts
-var _templateObject121, _templateObject230, _templateObject328, _templateObject426, _templateObject518, _templateObject617, _templateObject715, _templateObject815, _templateObject914, _templateObject1012, _templateObject1111, _templateObject129, _templateObject139, _templateObject148, _templateObject158;
+var _templateObject121, _templateObject230, _templateObject328, _templateObject426, _templateObject518, _templateObject617, _templateObject715, _templateObject815, _templateObject914, _templateObject1012, _templateObject1111, _templateObject129, _templateObject139, _templateObject148, _templateObject158, _templateObject168, _templateObject178, _templateObject188;
 function _taggedTemplateLiteral15(e, t) {
   return t || (t = e.slice(0)), Object.freeze(Object.defineProperties(e, { raw: { value: Object.freeze(t) } }));
 }
@@ -7756,6 +7756,18 @@ var EMBERIZA_AUREOLA_QUEST = {
       return (0, import_kolmafia24.use)($item(_templateObject158 || (_templateObject158 = _taggedTemplateLiteral15(["ember egg"]))));
     },
     sobriety: "either"
+  }, {
+    name: "Unfinished",
+    completed: function() {
+      return have($familiar(_templateObject168 || (_templateObject168 = _taggedTemplateLiteral15(["Emberiza Aureola"]))));
+    },
+    do: function() {
+      return (0, import_kolmafia24.print)("Unable to acquire Emberiza Aureola, have ".concat((0, import_kolmafia24.availableAmount)($item(_templateObject178 || (_templateObject178 = _taggedTemplateLiteral15(["embering hunk"])))), "/21 ").concat($item(_templateObject188 || (_templateObject188 = _taggedTemplateLiteral15(["embering hunk"]))).plural), HIGHLIGHT);
+    },
+    limit: {
+      skip: 1
+    },
+    sobriety: "either"
   }]
 }, Quests = [EMBERIZA_AUREOLA_QUEST];
 
@@ -7771,7 +7783,7 @@ __export(Setup_exports, {
 });
 init_kolmafia_polyfill();
 var import_kolmafia25 = require("kolmafia");
-var _templateObject130, _templateObject231, _templateObject329, _templateObject427, _templateObject519, _templateObject618, _templateObject716, _templateObject816, _templateObject915, _templateObject1013, _templateObject1112, _templateObject1210, _templateObject1310, _templateObject149, _templateObject159, _templateObject168, _templateObject178, _templateObject188, _templateObject198, _templateObject208, _templateObject2112, _templateObject2210, _templateObject238, _templateObject248;
+var _templateObject130, _templateObject231, _templateObject329, _templateObject427, _templateObject519, _templateObject618, _templateObject716, _templateObject816, _templateObject915, _templateObject1013, _templateObject1112, _templateObject1210, _templateObject1310, _templateObject149, _templateObject159, _templateObject169, _templateObject179, _templateObject189, _templateObject198, _templateObject208, _templateObject2112, _templateObject2210, _templateObject238, _templateObject248;
 function _taggedTemplateLiteral16(e, t) {
   return t || (t = e.slice(0)), Object.freeze(Object.defineProperties(e, { raw: { value: Object.freeze(t) } }));
 }
@@ -7878,7 +7890,7 @@ var poisons = $effects(_templateObject130 || (_templateObject130 = _taggedTempla
   }, {
     name: "Closet Hobo Nickels",
     completed: function() {
-      return (0, import_kolmafia25.itemAmount)($item(_templateObject168 || (_templateObject168 = _taggedTemplateLiteral16(["hobo nickel"])))) === 0 || !have($familiar(_templateObject178 || (_templateObject178 = _taggedTemplateLiteral16(["Hobo Monkey"])))) && !have($item(_templateObject188 || (_templateObject188 = _taggedTemplateLiteral16(["hobo nickel"]))), 1e3);
+      return (0, import_kolmafia25.itemAmount)($item(_templateObject169 || (_templateObject169 = _taggedTemplateLiteral16(["hobo nickel"])))) === 0 || !have($familiar(_templateObject179 || (_templateObject179 = _taggedTemplateLiteral16(["Hobo Monkey"])))) && !have($item(_templateObject189 || (_templateObject189 = _taggedTemplateLiteral16(["hobo nickel"]))), 1e3);
     },
     do: function() {
       return (0, import_kolmafia25.putCloset)((0, import_kolmafia25.itemAmount)($item(_templateObject198 || (_templateObject198 = _taggedTemplateLiteral16(["hobo nickel"])))), $item(_templateObject208 || (_templateObject208 = _taggedTemplateLiteral16(["hobo nickel"]))));
