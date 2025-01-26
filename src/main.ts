@@ -62,6 +62,4 @@ export default function main(argsString = ""): void {
     engine.destruct();
     propertyManager.resetAll();
   }
-
-  print("You have successfully run queso!");
 }
