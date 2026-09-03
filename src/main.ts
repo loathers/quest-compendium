@@ -15,6 +15,11 @@ export default function main(argsString = ""): void {
   Args.fill(args, argsString);
   if (args.help || args.quest === undefined) {
     Args.showHelp(args);
+    print("");
+    print("Available quests:");
+    for (const quest of AllQuests) {
+      print(`  ${quest.name}: ${quest.description}`);
+    }
     return;
   }
 
