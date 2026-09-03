@@ -6980,7 +6980,7 @@ function checkGithubVersion() {
       // Query GitHub for latest release commit
       var gitBranches = JSON.parse(gitData);
       var releaseSHA = (_gitBranches$find = gitBranches.find(branchInfo => branchInfo.name === "release")) === null || _gitBranches$find === void 0 || (_gitBranches$find = _gitBranches$find.commit) === null || _gitBranches$find === void 0 ? void 0 : _gitBranches$find.sha;
-      kolmafia.print("Local Version: ".concat(localSHA, " (built from ", "main", "@", "3a4154011fb181eaff79a02e165c76c6b43db717", ")"));
+      kolmafia.print("Local Version: ".concat(localSHA, " (built from ", "main", "@", "499ebe63eb8caa5f206e31b8c0e9124e1c3036b3", ")"));
       if (releaseSHA === localSHA) {
         kolmafia.print("Queso is up to date!", HIGHLIGHT);
       } else if (releaseSHA === undefined) {
@@ -7025,7 +7025,7 @@ var QuesoEngine = /*#__PURE__*/function (_Engine) {
   }, {
     key: "available",
     value: function available(task) {
-      var sobriety = task.sobriety === "either" || sober() && task.sobriety === "sober" || !sober() && task.sobriety === "drunk";
+      var sobriety = !task.sobriety || task.sobriety === "either" || sober() && task.sobriety === "sober" || !sober() && task.sobriety === "drunk";
       return sobriety && _superPropGet(QuesoEngine, "available", this, 3)([task]);
     }
   }, {
@@ -7356,28 +7356,24 @@ var EMBERIZA_AUREOLA_QUEST = {
       modifier: "Spell Damage Percent, Myst, 0.1 Hot Resistance"
     }),
     // TODO: do free kills work?
-    combat: new QuesoStrategy(() => Macro.tryHaveSkill($skill(_templateObject7$1 || (_templateObject7$1 = _taggedTemplateLiteral(["Implode Universe"])))).elementalCombat($element(_templateObject8$1 || (_templateObject8$1 = _taggedTemplateLiteral(["Hot"]))))),
-    sobriety: "either"
+    combat: new QuesoStrategy(() => Macro.tryHaveSkill($skill(_templateObject7$1 || (_templateObject7$1 = _taggedTemplateLiteral(["Implode Universe"])))).elementalCombat($element(_templateObject8$1 || (_templateObject8$1 = _taggedTemplateLiteral(["Hot"])))))
   }, {
     name: "Acquire ember egg",
     ready: () => kolmafia.creatableAmount($item(_templateObject9$1 || (_templateObject9$1 = _taggedTemplateLiteral(["ember egg"])))) > 0,
     completed: () => have$1($item(_templateObject0$1 || (_templateObject0$1 = _taggedTemplateLiteral(["ember egg"])))) || have$1($familiar(_templateObject1$1 || (_templateObject1$1 = _taggedTemplateLiteral(["Emberiza Aureola"])))),
-    do: () => kolmafia.create($item(_templateObject10$1 || (_templateObject10$1 = _taggedTemplateLiteral(["ember egg"])))),
-    sobriety: "either"
+    do: () => kolmafia.create($item(_templateObject10$1 || (_templateObject10$1 = _taggedTemplateLiteral(["ember egg"]))))
   }, {
     name: "Use ember egg",
     ready: () => have$1($item(_templateObject11$1 || (_templateObject11$1 = _taggedTemplateLiteral(["ember egg"])))),
     completed: () => have$1($familiar(_templateObject12$1 || (_templateObject12$1 = _taggedTemplateLiteral(["Emberiza Aureola"])))),
-    do: () => kolmafia.use($item(_templateObject13$1 || (_templateObject13$1 = _taggedTemplateLiteral(["ember egg"])))),
-    sobriety: "either"
+    do: () => kolmafia.use($item(_templateObject13$1 || (_templateObject13$1 = _taggedTemplateLiteral(["ember egg"]))))
   }, {
     name: "Unfinished",
     completed: () => have$1($familiar(_templateObject14$1 || (_templateObject14$1 = _taggedTemplateLiteral(["Emberiza Aureola"])))),
     do: () => kolmafia.print("Unable to acquire Emberiza Aureola, have ".concat(kolmafia.availableAmount($item(_templateObject15$1 || (_templateObject15$1 = _taggedTemplateLiteral(["embering hunk"])))), "/21 ").concat($item(_templateObject16$1 || (_templateObject16$1 = _taggedTemplateLiteral(["embering hunk"]))).plural), HIGHLIGHT),
     limit: {
       skip: 1
-    },
-    sobriety: "either"
+    }
   }]
 };
 var Quests$1 = [EMBERIZA_AUREOLA_QUEST];
@@ -7478,7 +7474,7 @@ var AllQuests = [].concat(_toConsumableArray(Quests), _toConsumableArray(Quests$
 
 function main() {
   var argsString = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
-  sinceKolmafiaRevision(28307);
+  sinceKolmafiaRevision(29226);
   checkGithubVersion();
   if (!kolmafia.canInteract()) kolmafia.abort("queso requires being able to interact");
   Args.fill(args, argsString);
