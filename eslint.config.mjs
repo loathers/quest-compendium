@@ -1,18 +1,18 @@
-// @ts-check
-import eslint from "@eslint/js";
-import * as libram from "eslint-plugin-libram";
+import js from "@eslint/js";
+import prettier from "eslint-config-prettier";
+import libram from "eslint-plugin-libram";
+import { defineConfig } from "eslint/config";
 import tseslint from "typescript-eslint";
 
-export default tseslint.config(
-  eslint.configs.recommended,
-  tseslint.configs.recommended,
+export default defineConfig(
   {
-    plugins: { libram },
-    rules: {
-      "libram/verify-constants": "error",
-    },
+    ignores: ["dist"],
   },
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
+  ...libram.configs.recommended,
   {
+    files: ["**/*.ts", "**/*.tsx"],
     rules: {
       "block-scoped-var": "error",
       "eol-last": "error",
@@ -22,15 +22,10 @@ export default tseslint.config(
       "prefer-arrow-callback": "error",
       "prefer-const": "error",
       "prefer-template": "error",
-      "sort-imports": [
-        "error",
-        {
-          ignoreCase: true,
-          ignoreDeclarationSort: true,
-        },
-      ],
       "no-unused-vars": "off",
       "@typescript-eslint/no-unused-vars": "error",
+      "@typescript-eslint/no-explicit-any": "error",
+      "@typescript-eslint/no-non-null-assertion": "error",
       "no-restricted-syntax": [
         "error",
         {
@@ -40,4 +35,5 @@ export default tseslint.config(
       ],
     },
   },
+  prettier,
 );

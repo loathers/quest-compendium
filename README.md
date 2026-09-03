@@ -1,6 +1,6 @@
 # quest-compendium
 
-quest-compendium is a Typescript library that intends to provide grimoire tasks for automating KoLmafia 
+quest-compendium is a Typescript library that intends to provide grimoire tasks for automating KoLmafia
 
 # Development
 
