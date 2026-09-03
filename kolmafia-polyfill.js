@@ -1,3 +1,4 @@
 /* eslint-disable */
-const kolmafia = require("kolmafia");
-export let console = { log: kolmafia.print };
+import * as kolmafia from "kolmafia";
+
+export const console = { log: kolmafia.print };

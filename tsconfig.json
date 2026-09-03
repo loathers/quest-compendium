@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
-    "rootDir": "src",
+    "types": ["node"],
     "noEmit": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "declaration": false,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["es2018"],
-    "module": "commonjs",
+    "lib": ["es2019"],
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "noEmitOnError": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
