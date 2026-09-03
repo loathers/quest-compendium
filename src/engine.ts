@@ -15,7 +15,7 @@ import { printd, sober } from "./lib";
 import Macro from "./macro";
 
 export type QuesoTask = Task & {
-  sobriety: "sober" | "drunk" | "either";
+  sobriety?: "sober" | "drunk" | "either";
 };
 
 export interface QuesoQuest extends Quest<QuesoTask> {
@@ -39,6 +39,7 @@ export class QuesoEngine extends Engine<never, QuesoTask> {
 
   available(task: QuesoTask): boolean {
     const sobriety =
+      !task.sobriety ||
       task.sobriety === "either" ||
       (sober() && task.sobriety === "sober") ||
       (!sober() && task.sobriety === "drunk");

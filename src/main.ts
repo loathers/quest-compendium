@@ -8,7 +8,7 @@ import { checkGithubVersion, propertyManager } from "./lib";
 import { AllQuests, Setup } from "./quests";
 
 export default function main(argsString = ""): void {
-  sinceKolmafiaRevision(28307);
+  sinceKolmafiaRevision(29226);
   checkGithubVersion();
   if (!canInteract()) abort("queso requires being able to interact");
 

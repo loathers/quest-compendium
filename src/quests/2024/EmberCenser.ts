@@ -41,21 +41,18 @@ export const EMBERIZA_AUREOLA_QUEST: QuesoQuest = {
       combat: new QuesoStrategy(() =>
         Macro.tryHaveSkill($skill`Implode Universe`).elementalCombat($element`Hot`),
       ),
-      sobriety: "either",
     },
     {
       name: "Acquire ember egg",
       ready: () => creatableAmount($item`ember egg`) > 0,
       completed: () => have($item`ember egg`) || have($familiar`Emberiza Aureola`),
       do: () => create($item`ember egg`),
-      sobriety: "either",
     },
     {
       name: "Use ember egg",
       ready: () => have($item`ember egg`),
       completed: () => have($familiar`Emberiza Aureola`),
       do: () => use($item`ember egg`),
-      sobriety: "either",
     },
     {
       name: "Unfinished",
@@ -66,7 +63,6 @@ export const EMBERIZA_AUREOLA_QUEST: QuesoQuest = {
           HIGHLIGHT,
         ),
       limit: { skip: 1 },
-      sobriety: "either",
     },
   ],
 };
