@@ -1,4 +1,3 @@
-import { CombatStrategy } from "grimoire-kolmafia";
 import {
   inebrietyLimit,
   Location,
@@ -9,11 +8,9 @@ import {
   myInebriety,
   myMaxhp,
   myMp,
-  myPrimestat,
   restoreHp,
   restoreMp,
   retrieveItem,
-  Skill,
   use,
   useSkill,
 } from "kolmafia";
@@ -23,17 +20,16 @@ import {
   $location,
   $phylum,
   $skill,
-  $stat,
   AsdonMartin,
   get,
   have,
-  Macro,
   Snapper,
   tryFindFreeKill,
   uneffect,
 } from "libram";
 
-import { QuesoQuest } from "../../engine";
+import { QuesoQuest, QuesoStrategy } from "../../engine";
+import Macro from "../../macro";
 
 tryFindFreeKill({});
 
@@ -78,21 +74,6 @@ function seaPearlPrepare(): void {
   if (myMp() < 50) {
     restoreMp(50);
   }
-}
-
-function combatSkill(): Skill {
-  if (myPrimestat() === $stat`Muscle`) {
-    return $skill`Lunging Thrust-Smack`;
-  } else return $skill`Saucegeyser`;
-}
-
-function buildSeaPearlMacro(): Macro {
-  const macro = Macro.if_(`monsterphylum plant`, Macro.trySkill($skill`Tear Away your Pants!`)).if_(
-    `!monsterphylum ${$phylum`fish`}`,
-    Macro.trySkill($skill`Sea *dent: Talk to Some Fish`),
-  );
-
-  return macro.trySkillRepeat(combatSkill()).repeat();
 }
 
 function getSeaPearlOutfit(elementModifier: string) {
@@ -166,7 +147,7 @@ const SEA_PEARL_QUESTS: QuesoQuest = {
       prepare: () => seaPearlPrepare(),
       do: () => zone.location,
       outfit: () => getSeaPearlOutfit(zone.modifier),
-      combat: new CombatStrategy().macro(buildSeaPearlMacro()),
+      combat: new QuesoStrategy(Macro.hardKill),
       clear: "all" as const,
       tracking: "Sea Pearl",
       limit: { turns: 10 },
