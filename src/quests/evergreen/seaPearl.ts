@@ -2,6 +2,7 @@ import {
   inebrietyLimit,
   Location,
   mallPrice,
+  Modifier,
   myAdventures,
   myFamiliar,
   myHp,
@@ -11,6 +12,7 @@ import {
   restoreHp,
   restoreMp,
   retrieveItem,
+  toEffect,
   use,
   useSkill,
 } from "kolmafia";
@@ -18,27 +20,21 @@ import {
   $effect,
   $item,
   $location,
+  $modifier,
   $phylum,
-  $skill,
+  $skills,
   AsdonMartin,
   get,
   have,
   Snapper,
-  tryFindFreeKill,
   uneffect,
 } from "libram";
 
 import { QuesoQuest, QuesoStrategy } from "../../engine";
 import Macro from "../../macro";
 
-tryFindFreeKill({});
-
 function canSeaPearl(): boolean {
-  return (
-    get("isMerkinGladiatorChampion") &&
-    (mallPrice($item`unblemished pearl`) / 10 >= get("valueOfAdventure") ||
-      myInebriety() > inebrietyLimit() + 1)
-  );
+  return get("isMerkinGladiatorChampion");
 }
 
 function seaPearlPrepare(): void {
@@ -56,15 +52,13 @@ function seaPearlPrepare(): void {
   if (AsdonMartin.installed() && !have($effect`Driving Waterproofly`)) {
     AsdonMartin.drive(AsdonMartin.Driving.Waterproofly);
   }
-  if (!have($effect`Feeling Peaceful`) && get("_feelPeacefulUsed") < 3) {
-    useSkill($skill`Feel Peaceful`);
-  }
-  if (!have($effect`Astral Shell`)) {
-    useSkill($skill`Astral Shell`);
-  }
-  if (!have($effect`Elemental Saucesphere`)) {
-    useSkill($skill`Elemental Saucesphere`);
-  }
+
+  $skills`Feel Peaceful, Astral Shell, Elemental Saucesphere`.forEach((e) => {
+    if (have(e) && !have(toEffect(e))) {
+      useSkill(e);
+    }
+  });
+
   if (have($effect`The Colors...`)) {
     uneffect($effect`The Colors...`);
   }
@@ -92,39 +86,39 @@ interface SeaPearlZone {
   name: string;
   prop: string;
   location: Location;
-  modifier: string;
+  modifier: Modifier;
 }
 
 const SEA_PEARL_ZONES: SeaPearlZone[] = [
   {
-    name: "Sea Pearl Mine",
+    name: "Mine",
     prop: "_unblemishedPearlAnemoneMine",
     location: $location`Anemone Mine`,
-    modifier: "spooky res",
+    modifier: $modifier`Spooky Res`,
   },
   {
-    name: "Sea Pearl Bar",
+    name: "Bar",
     prop: "_unblemishedPearlDiveBar",
     location: $location`The Dive Bar`,
-    modifier: "sleaze res",
+    modifier: $modifier`Sleaze Res`,
   },
   {
-    name: "Sea Pearl Reef",
+    name: "Reef",
     prop: "_unblemishedPearlMadnessReef",
     location: $location`Madness Reef`,
-    modifier: "stench res",
+    modifier: $modifier`Stench Res`,
   },
   {
-    name: "Sea Pearl Trench",
+    name: "Trench",
     prop: "_unblemishedPearlMarinaraTrench",
     location: $location`The Marinara Trench`,
-    modifier: "hot res",
+    modifier: $modifier`Hot Res`,
   },
   {
-    name: "Sea Pearl Deepests",
+    name: "Deepests",
     prop: "_unblemishedPearlTheBriniestDeepests",
     location: $location`The Briniest Deepests`,
-    modifier: "cold res",
+    modifier: $modifier`Cold Res`,
   },
 ];
 
@@ -146,10 +140,8 @@ const SEA_PEARL_QUESTS: QuesoQuest = {
       completed: () => get(zone.prop, false),
       prepare: () => seaPearlPrepare(),
       do: () => zone.location,
-      outfit: () => getSeaPearlOutfit(zone.modifier),
+      outfit: () => getSeaPearlOutfit(zone.modifier.name),
       combat: new QuesoStrategy(Macro.hardKill),
-      clear: "all" as const,
-      tracking: "Sea Pearl",
       limit: { turns: 10 },
     })),
   ],
